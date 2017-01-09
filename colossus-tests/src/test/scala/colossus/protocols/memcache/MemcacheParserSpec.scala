@@ -10,7 +10,7 @@ import core.DataBuffer
 
 import colossus.parsing.{DataSize, ParseException}
 
-class MemcacheParserSpec extends FlatSpec with ShouldMatchers{
+class MemcacheParserSpec extends FlatSpec with Matchers{
   import MemcacheReply._
 
   "MemcacheParser" should "parse a value reply" in {

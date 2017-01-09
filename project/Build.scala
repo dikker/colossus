@@ -2,12 +2,12 @@ import sbt._
 import Keys._
 import spray.revolver.RevolverPlugin._
 import com.typesafe.sbt.pgp.PgpKeys._
-import scoverage.ScoverageSbtPlugin.ScoverageKeys._
+// import scoverage.ScoverageSbtPlugin.ScoverageKeys._
 
 object ColossusBuild extends Build {
 
-  val AKKA_VERSION            = "2.3.9"
-  val SCALATEST_VERSION       = "2.2.0"
+  val AKKA_VERSION            = "2.4.16"
+  val SCALATEST_VERSION       = "3.0.1"
 
   lazy val testAll = TaskKey[Unit]("test-all")
 
@@ -17,9 +17,9 @@ object ColossusBuild extends Build {
     compile <<= (compile in Compile) dependsOn (compile in Test) dependsOn (compile in IntegrationTest),
     (testAll) <<= (test in Test) dependsOn (test in IntegrationTest),
     organization := "com.tumblr",
-    scalaVersion  := "2.11.7",
-    crossScalaVersions := Seq("2.10.6", "2.11.7"),
-    version                   := "0.9.0-SNAPSHOT",
+    scalaVersion  := "2.12.1",
+    crossScalaVersions := Seq("2.11.8", "2.12.1"),
+    version                   := "0.8.3-SNAPSHOT",
     parallelExecution in Test := false,
     scalacOptions <<= scalaVersion map { v: String =>
       val default = List(
@@ -39,11 +39,11 @@ object ColossusBuild extends Build {
       "com.typesafe.akka" %% "akka-agent"   % AKKA_VERSION,
       "com.typesafe.akka" %% "akka-testkit" % AKKA_VERSION,
       "org.scalatest"     %% "scalatest" % SCALATEST_VERSION % "test, it",
-      "org.scalamock" %% "scalamock-scalatest-support" % "3.2.2" % "test",
+      "org.scalamock" %% "scalamock-scalatest-support" % "3.4.2" % "test",
       "org.mockito" % "mockito-all" % "1.9.5" % "test",
-      "com.github.nscala-time" %% "nscala-time" % "1.2.0"
-    ),
-    coverageExcludedPackages := "colossus\\.examples\\..*;.*\\.testkit\\.*"
+      "com.github.nscala-time" %% "nscala-time" % "2.16.0"
+    )//,
+    // coverageExcludedPackages := "colossus\\.examples\\..*;.*\\.testkit\\.*"
   ) ++ Defaults.itSettings
 
   val ColossusSettings = GeneralSettings ++ Publish.settings
@@ -61,7 +61,7 @@ object ColossusBuild extends Build {
 
   val ExamplesSettings = Seq (
     libraryDependencies ++= Seq(
-      "org.json4s" %% "json4s-jackson" % "3.3.0"
+      "org.json4s" %% "json4s-jackson" % "3.5.0"
     )
   )
 

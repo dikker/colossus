@@ -13,7 +13,7 @@ import UnifiedProtocol._
 import parsing._
 import DataSize._
 
-class FastCommandSuite extends FlatSpec with ShouldMatchers{
+class FastCommandSuite extends FlatSpec with Matchers{
 
   //def commandParser = new SuperFastCommandParser
   def commandParser = RedisCommandParser.command
@@ -109,7 +109,7 @@ class FastCommandSuite extends FlatSpec with ShouldMatchers{
 
 }
 
-class FastReplySuite extends FlatSpec with ShouldMatchers{
+class FastReplySuite extends FlatSpec with Matchers{
 
   def replyParser = RedisReplyParser()
 
